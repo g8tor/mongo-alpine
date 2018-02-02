@@ -5,7 +5,7 @@ FROM alpine:3.7
 LABEL authors="Vernon Chapman <g8tor692@gmail.com>"
 
 ENV MONGO_DB_USER mongodb
-ENV MONGO_DATA_DIR /data/db
+ENV MONGO_DATA_DIR /data/mongo/db
 
 # Add System PAckages
 RUN apk --no-cache add mongodb && \
@@ -18,4 +18,4 @@ EXPOSE 27017
 
 USER mongodb
 
-CMD ["mongod"]
+CMD /usr/bin/mongod --dbpath $MONGO_DATA_DIR
